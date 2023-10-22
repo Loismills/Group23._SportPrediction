@@ -30,7 +30,7 @@ rm = st.number_input('rm', min_value=0.0, step=0.01, key='rm')
 
 
 if st.button("Predict"):
-    input_data = np.array([[overall, potential, wage_eur, passing, dribbling, movement_reactions, mentality_composure, lf, cf, rf, lam, cam, ram, lm, lcm, cm, rcm, rm]])
+    input_data = np.array([[potential, wage_eur, passing, dribbling, movement_reactions, mentality_composure, lf, cf, rf, lam, cam, ram, lm, lcm, cm, rcm, rm]])
 
     prediction = model.predict(input_data)[0]
     confidence_score = model.predict(input_data).max() * 100
