@@ -4,12 +4,12 @@ import numpy as np
 
 
 
-loaded_model = pickle.load(open('/Users/naakoshie/Downloads/model.pkl', 'rb'))
+model = pickle.load(open('/Users/naakoshie/Downloads/model.pkl', 'rb'))
 
 
 st.title("Player Rating Predictor")
 
-overall= st.number_input('overall', min_value=0.0, step=0.01, key='overall')
+
 potential= st.number_input('potential', min_value=0.0, step=0.01, key='potential')
 wage_eur = st.number_input('wage_eur', min_value=0.0, step=0.01, key='wage_eur')
 passing = st.number_input('passing', min_value=0.0, step=0.01, key='passing')
@@ -33,7 +33,7 @@ if st.button("Predict"):
     input_data = np.array([[overall, potential, wage_eur, passing, dribbling, movement_reactions, mentality_composure, lf, cf, rf, lam, cam, ram, lm, lcm, cm, rcm, rm]])
 
     prediction = model.predict(input_data)[0]
-    confidence_score = model.predict_proba(input_data).max() * 100
+    confidence_score = model.predict(input_data).max() * 100
 
     st.write(f"Player Rating Prediction: {prediction:.2f}")
     st.write(f"Confidence Score: {confidence_score:.2f}%")
